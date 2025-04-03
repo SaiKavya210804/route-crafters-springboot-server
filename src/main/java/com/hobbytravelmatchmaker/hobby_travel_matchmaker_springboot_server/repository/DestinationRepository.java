@@ -6,4 +6,11 @@ import java.util.List;
 
 public interface DestinationRepository extends MongoRepository<Destination, String> {
     List<Destination> findByInterestsIn(List<String> interests);
+
+    // New queries for insights
+    List<Destination> findByBestTimeToVisit(String bestTime);
+
+    List<Destination> findByPopularActivitiesContaining(String activity);
+
+    List<Destination> findByCulturalHighlightsContaining(String highlight);
 }

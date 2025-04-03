@@ -12,7 +12,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/destinations")
 @RequiredArgsConstructor
-// @CrossOrigin(origins = "http://localhost:3000") // Adjust if needed
 public class DestinationController {
 
     private final DestinationService destinationService;
@@ -24,13 +23,22 @@ public class DestinationController {
         return ResponseEntity.ok(destinations);
     }
 
-    // Get recommendations based on interests
-    @PostMapping("/recommend")
-    public ResponseEntity<List<Destination>> getRecommendations(@RequestBody Map<String, List<String>> request) {
+    // Get recommendations based on hobbies (interests)
+    @PostMapping("/recommend/hobbies")
+    public ResponseEntity<List<Destination>> getRecommendationsByHobbies(
+            @RequestBody Map<String, List<String>> request) {
         List<String> interests = request.get("interests");
         System.out.println("✅ Received Interests: " + interests);
         List<Destination> recommendations = destinationService.getDestinationsByInterests(interests);
         return ResponseEntity.ok(recommendations);
     }
 
+    // Get recommendations based on seasons (best time to visit)
+    @PostMapping("/recommend/seasons")
+    public ResponseEntity<List<Destination>> getRecommendationsBySeason(@RequestBody Map<String, String> request) {
+        String bestTime = request.get("season");
+        System.out.println("✅ Received Season: " + bestTime);
+        List<Destination> recommendations = destinationService.getDestinationsByBestTime(bestTime);
+        return ResponseEntity.ok(recommendations);
+    }
 }

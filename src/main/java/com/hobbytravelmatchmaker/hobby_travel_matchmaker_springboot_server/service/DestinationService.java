@@ -18,8 +18,13 @@ public class DestinationService {
         return destinationRepository.findAll();
     }
 
-    // Get destinations by list of interests
+    // Get destinations by list of interests (hobbies)
     public List<Destination> getDestinationsByInterests(List<String> interests) {
         return destinationRepository.findByInterestsIn(interests);
+    }
+
+    // Get destinations by best visiting season
+    public List<Destination> getDestinationsByBestTime(String bestTime) {
+        return destinationRepository.findByBestTimeToVisit(bestTime);
     }
 }
