@@ -13,4 +13,10 @@ public class Destination {
     private String name;
     private String description;
     private List<String> interests; // e.g., photography, trekking
+
+    // New fields for insights
+    private String bestTimeToVisit;
+    private List<String> popularActivities;
+    private String culturalHighlights;
+    private double averageCost;
 }
