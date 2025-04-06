@@ -12,7 +12,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/destinations")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000") // Adjust if needed
+// @CrossOrigin(origins = "http://localhost:3000") // Adjust if needed
 public class DestinationController {
 
     private final DestinationService destinationService;
@@ -28,7 +28,9 @@ public class DestinationController {
     @PostMapping("/recommend")
     public ResponseEntity<List<Destination>> getRecommendations(@RequestBody Map<String, List<String>> request) {
         List<String> interests = request.get("interests");
+        System.out.println("✅ Received Interests: " + interests);
         List<Destination> recommendations = destinationService.getDestinationsByInterests(interests);
         return ResponseEntity.ok(recommendations);
     }
+
 }
